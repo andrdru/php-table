@@ -1,0 +1,23 @@
+{
+  "name": "andrdru/table",
+  "type": "libriary",
+  "require": {
+    "andrdru/db": "^1.3",
+    "andrdru/util": "^1.12"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.4"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Andrei Drulchenko",
+      "email": "andrdru@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Table\\": "src/"
+    }
+  }
+}
