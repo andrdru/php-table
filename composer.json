@@ -2,6 +2,7 @@
   "name": "andrdru/table",
   "type": "libriary",
   "require": {
+    "php":"^7.1",
     "andrdru/db": "^1.3",
     "andrdru/util": "^1.12"
   },
