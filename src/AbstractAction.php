@@ -68,7 +68,7 @@ abstract class AbstractAction extends AbstractTable
                     }
                 }
                 if ($doEdit) {
-                    $obj->where($this->idname)->val($id);
+                    $obj = $obj->where($this->idname)->val($id);
                     $ans = $obj->do();
                 }
             }
