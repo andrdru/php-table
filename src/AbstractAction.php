@@ -44,7 +44,7 @@ abstract class AbstractAction extends AbstractTable
             $idname = $this->idname;
         }
         $ret = $sel->select($select)->from($this->table)->where($idname)->val($id)->do();
-        if (is_array($ret)) {
+        if (\is_array($ret)) {
             $ans = $ret[0];
         }
         return $ans;
@@ -56,7 +56,7 @@ abstract class AbstractAction extends AbstractTable
         if (isset($fc[$this->idname])) {
             $id = $fc[$this->idname];
             unset($fc[$this->idname]);
-            if (count($fc) > 0) {
+            if (\count($fc) > 0) {
                 $allowedArr = explode(',', $allowedKeys);
                 $update = new Update($this->db);
                 $obj = $update->update($this->table);
