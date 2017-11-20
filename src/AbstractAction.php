@@ -5,6 +5,7 @@ namespace Table;
 use Db\DbInterface;
 use Db\Query\Delete;
 use Db\Query\Select;
+use Db\Query\Update;
 use Util\Dbutil;
 
 abstract class AbstractAction extends AbstractTable
@@ -45,6 +46,32 @@ abstract class AbstractAction extends AbstractTable
         $ret = $sel->select($select)->from($this->table)->where($idname)->val($id)->do();
         if (is_array($ret)) {
             $ans = $ret[0];
+        }
+        return $ans;
+    }
+
+    public function edit(array $fc, $allowedKeys)
+    {
+        $ans = false;
+        if (isset($fc[$this->idname])) {
+            $id = $fc[$this->idname];
+            unset($fc[$this->idname]);
+            if (count($fc) > 0) {
+                $allowedArr = explode(',', $allowedKeys);
+                $update = new Update($this->db);
+                $obj = $update->update($this->table);
+                $doEdit = false;
+                foreach ($fc as $k => $el) {
+                    if (\in_array($k, $allowedArr, false)) {
+                        $obj = $obj->set($k)->val($el);
+                        $doEdit = true;
+                    }
+                }
+                if ($doEdit) {
+                    $obj->where($this->idname, $id);
+                    $ans = $obj->do();
+                }
+            }
         }
         return $ans;
     }
